@@ -1,12 +1,12 @@
 [package]
-name = "escrow"
+name = "my_escrow"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "escrow"
+name = "my_escrow"
 
 [features]
 default = []
@@ -14,14 +14,15 @@ cpi = ["no-entrypoint"]
 no-entrypoint = []
 no-idl = []
 no-log-ix-name = []
-idl-build = ["anchor-lang/idl-build"]
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
 anchor-debug = []
 custom-heap = []
 custom-panic = []
 
 
 [dependencies]
-anchor-lang = "0.31.1"
+anchor-lang = {version = "0.31.1",features = ["init-if-needed"]}
+anchor-spl="0.31.0"
 
 
 [lints.rust]
