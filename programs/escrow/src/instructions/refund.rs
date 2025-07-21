@@ -1,5 +1,5 @@
 use crate::Escrow;
-use anchor_lang::{prelude::*, system_program::transfer};
+use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
     token::{close_account, CloseAccount},
@@ -63,7 +63,7 @@ impl<'info> Refund<'info> {
             close_accounts,
             &signer_seeds,
         );
-        close_account(close_cpi_ctx);
+        close_account(close_cpi_ctx)?;
 
         Ok(())
     }

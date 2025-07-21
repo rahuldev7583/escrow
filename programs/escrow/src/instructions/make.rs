@@ -1,5 +1,5 @@
 use crate::Escrow;
-use anchor_lang::{prelude::*, system_program::transfer};
+use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
     token_interface::{transfer_checked, Mint, TokenAccount, TokenInterface, TransferChecked},
@@ -54,6 +54,7 @@ impl<'info> Make<'info> {
         };
         let cpi_context = CpiContext::new(self.token_program.to_account_info(), transfer_accounts);
 
-        transfer_checked(cpi_context, amount, self.mint_a.decimals)
+        transfer_checked(cpi_context, amount, self.mint_a.decimals)?;
+        Ok(())
     }
 }
